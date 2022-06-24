@@ -9,7 +9,9 @@ import com.idat.AbrilServicioI.model.Productos;
 public interface ProductoServicio {
 	public void guardarProducto(ProductoDTORequest producto);
 	public void editarProducto(ProductoDTORequest producto);
+	
 	public void eliminarProducto(Integer id);
+	
 	public List<ProductoDTOResponse> listarProductos();
-	public Productos obtenerProductoId(Integer id);
+	public ProductoDTOResponse obtenerProductoId(Integer id);
 }

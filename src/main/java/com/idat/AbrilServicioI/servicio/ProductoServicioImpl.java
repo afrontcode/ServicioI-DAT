@@ -50,25 +50,38 @@ public class ProductoServicioImpl implements ProductoServicio {
 	@Override
 	public List<ProductoDTOResponse> listarProductos() {
 		// TODO Auto-generated method stub
-		List <ProductoDTOResponse> lista = new ArrayList<ProductoDTOResponse>();
-		ProductoDTOResponse p = null;
+		List<ProductoDTOResponse> lista = new ArrayList<ProductoDTOResponse>();
+		ProductoDTOResponse p = null; 
 		
-		for (Productos productos : repositorio.findAll()) {
-			p.setDescripcion(producto.getDescripcionDTO());
-			p.setIdProducto(producto.getIdProductoDTO());
-			p.setNombreProducto(producto.getNombreProductoDTO());
-			p.setPrecio(producto.getPrecioDTO());
-			p.setStock(producto.getStockDTO());
+
+		for (Productos producto :repositorio.findAll()) {
+			p = new ProductoDTOResponse();
+			
+			p.setDescripcionDTO(producto.getDescripcion());
+			p.setIdProductoDTO(producto.getIdProducto());
+			p.setNombreProductoDTO(producto.getNombreProducto());
+			p.setPrecioDTO(producto.getPrecio());
+			p.setStockDTO(producto.getStock());
 			
 			lista.add(p);
+			
 		}
+		
+
 		return lista;
 	}
 
 	@Override
-	public Productos obtenerProductoId(Integer id) {
-		// TODO Auto-generated method stub
-		return repositorio.findById(id).orElse(null);
+	public ProductoDTOResponse obtenerProductoId(Integer id) {
+		
+		Productos producto = repositorio.findById(id).orElse(null);
+		ProductoDTOResponse p = new ProductoDTOResponse();
+		p.setDescripcionDTO(producto.getDescripcion());
+		p.setIdProductoDTO(producto.getIdProducto());
+		p.setNombreProductoDTO(producto.getNombreProducto());
+		p.setPrecioDTO(producto.getPrecio());
+		p.setStockDTO(producto.getStock());
+		return p;
 	}
 
 }
